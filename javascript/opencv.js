@@ -226,7 +226,7 @@ cv.cvHoughLines2 = function (src, method, rho, theta, threshold, param1, param2)
 //
 //------------------データ型------------------------
 //canvasのRGBA値は0縲鰀255の値しかもてないため専用の画像データ型を用意
-cv.cv.IplImage = function(){
+cv.IplImage = function(){
 	width: 0;
 	height: 0;
 	canvas: null;
