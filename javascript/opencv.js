@@ -599,7 +599,7 @@ cv.cvmSub = function (matA, matB, matX){
 //matX cv.cvMat型 結果が代入される行列
 //出力
 //なし
-cv.cvmMul = function cvmMul(matA, matB, matX){
+cv.cvmMul = function (matA, matB, matX){
 	try{
 		if(cv.cvUndefinedOrNull(matA) || cv.cvUndefinedOrNull(matB)|| cv.cvUndefinedOrNull(matX))
 				throw "引数のどれか" + ERROR.IS_UNDEFINED_OR_NULL;
