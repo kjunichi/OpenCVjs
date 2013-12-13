@@ -3897,10 +3897,10 @@ cv.cvRGBA2ImageData = function (iplImage){
 			var is = i * iplImage.width * CHANNELS;
 			var js = 0;
 			for(var j = 0 ; j < iplImage.width ; j++){
-				for(var c = 0 ; c < CHANNELS; c++){
+				for(var c = 0 ; c < cv.CHANNELS; c++){
 					iplImage.imageData.data[c + js + is] = iplImage.RGBA[c + js + is];
 				}
-				js += CHANNELS;
+				js += cv.CHANNELS;
 			}
 		}	
 	}
