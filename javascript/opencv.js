@@ -2269,9 +2269,9 @@ cv.cvThreshold = function (src, dst, threshold, max_value, threshold_type){
 //なし
 cv.cvResize = function (src, dst, interpolation){
 	try{
-		if(cv.cvUndefinedOrNull(src) || cv.cvUndefinedOrNull(dst)) throw "src or dst" + ERROR.IS_UNDEFINED_OR_NULL;
-		if(cv.cvUndefinedOrNull(interpolation)) interpolation = cv.cv_INTER.NN;
-		if(interpolation == cv.cv_INTER.AREA)
+		if(cv.cvUndefinedOrNull(src) || cv.cvUndefinedOrNull(dst)) throw "src or dst" + cv.ERROR.IS_UNDEFINED_OR_NULL;
+		if(cv.cvUndefinedOrNull(interpolation)) interpolation = cv.CV_INTER.NN;
+		if(interpolation == cv.CV_INTER.AREA)
 			throw "interpolation は現在cv.cv_INTER.AREAをサポートしていません";
 		
 		var scaleWidth = src.width / dst.width;
@@ -2303,8 +2303,8 @@ cv.cvResize = function (src, dst, interpolation){
 								w2 * h1 * src.RGBA[c + (intW + nextH * src.width) * CHANNELS] +
 								w2 * h2 * src.RGBA[c + (nextW + nextH * src.width) * CHANNELS] ;
 					break;
-					case cv.cv_INTER.AREA: break;
-					case cv.cv_INTER.CUBIC:
+					case cv.CV_INTER.AREA: break;
+					case cv.CV_INTER.CUBIC:
 						var ha = -2;
 						var hym = cv.cvCreateMat(1, 4);
 						var hxm = cv.cvCreateMat(4, 1);
@@ -2395,7 +2395,7 @@ cv.cvResize = function (src, dst, interpolation){
 					
 					break;
 					default :
-						throw "interpolation" + ERROR.SWITCH_VALUE;
+						throw "interpolation" + cv.ERROR.SWITCH_VALUE;
 					break;
 					}
 					
