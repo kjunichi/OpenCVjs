@@ -131,7 +131,7 @@ cv.cvInPaint = function (src, mask, dst, inpaintRadius, flags){
 //  param1はrhoの序数（荒い距離はrho,詳細な距離ではrho/param1）
 //  param2はthetaの序数 （荒い角度はtheta,詳細な角度ではtheta/param2）
 //http://codezine.jp/article/detail/153
-cv.cvHoughLines2 = function cvHoughLines2(src, method, rho, theta, threshold, param1, param2){
+cv.cvHoughLines2 = function (src, method, rho, theta, threshold, param1, param2){
 	var rtn = null;
 	try{
 		if(cvUndefinedOrNull(src) || cvUndefinedOrNull(method) ||
@@ -470,7 +470,7 @@ cv.cvCartToPolar=function (xImage, yImage, magImage, angImage, angleInDegrees){
 //cols 整数 (x座標)
 //出力
 //CvMat型
-cv.cvCreateMat = function cvCreateMat(rows, cols){
+cv.cvCreateMat = function (rows, cols){
 	var rtn = null;
 	try{
 		if(cvUndefinedOrNull(rows) || cvUndefinedOrNull(cols))
@@ -543,7 +543,7 @@ cv.cvmGet = function (mat, row, col){
 //matX CvMat型 結果が代入される行列
 //出力
 //なし
-cv.cvmAdd = function cvmAdd(matA, matB, matX){
+cv.cvmAdd = function (matA, matB, matX){
 	try{
 		if(cvUndefinedOrNull(matA) || cvUndefinedOrNull(matB)|| cvUndefinedOrNull(matX))
 				throw "引数のどれか" + ERROR.IS_UNDEFINED_OR_NULL;
@@ -599,7 +599,7 @@ cv.cvmSub = function (matA, matB, matX){
 //matX CvMat型 結果が代入される行列
 //出力
 //なし
-function cvmMul(matA, matB, matX){
+cv.cvmMul = function cvmMul(matA, matB, matX){
 	try{
 		if(cvUndefinedOrNull(matA) || cvUndefinedOrNull(matB)|| cvUndefinedOrNull(matX))
 				throw "引数のどれか" + ERROR.IS_UNDEFINED_OR_NULL;
@@ -627,7 +627,7 @@ function cvmMul(matA, matB, matX){
 //matX CvMat型 結果が代入される行列
 //出力
 //なし
-function cvmTranspose(matA, matX){
+cv.cvmTranspose = function cvmTranspose(matA, matX){
 	try{
 		if(cvUndefinedOrNull(matA) || cvUndefinedOrNull(matX))
 				throw "引数のどれか" + ERROR.IS_UNDEFINED_OR_NULL;
@@ -655,7 +655,7 @@ function cvmTranspose(matA, matX){
 //method CV_INV配列 アルゴリズムの種類
 //出力
 //なし
-function cvInverse(mat, invMat, method){
+cv.cvInverse = function cvInverse(mat, invMat, method){
 	try{
 		if(cvUndefinedOrNull(mat) || cvUndefinedOrNull(invMat) ||
 		mat.rows != invMat.rows || mat.cols != invMat.cols) 
@@ -729,7 +729,7 @@ function cvInverse(mat, invMat, method){
 }
 
 //特異値分解の演算
-function cvSVD(A, W, U, V, flags){
+cv.cvSVD = function (A, W, U, V, flags){
 	try{
 	}
 	catch(ex){
@@ -744,7 +744,7 @@ function cvSVD(A, W, U, V, flags){
 //U CvMat型 Uの結果が代入される行列
 //出力
 //なし
-function cvLU(mat, L, U){
+cv.cvLU = function (mat, L, U){
 	try{
 		if(cvUndefinedOrNull(mat) || cvUndefinedOrNull(L)  || cvUndefinedOrNull(U) ) 
 			throw "引数のどれか" + ERROR.IS_UNDEFINED_OR_NULL;
@@ -795,7 +795,7 @@ function cvLU(mat, L, U){
 //mat CvMat型　行列式を求める行列
 //出力
 //演算結果
-function cvDet(mat){
+cv.cvDet = function (mat){
 	var rtn = null;
 	try{
 		if(cvUndefinedOrNull(mat)) 
@@ -853,7 +853,7 @@ function cvDet(mat){
 //なし
 //解説
 //各srcの0チャンネルの値が合成される
-function cvMerge(src0, src1, src2, src3, dst){
+cv.cvMerge = function (src0, src1, src2, src3, dst){
 	try{
 		if(cvUndefinedOrNull(src0) || cvUndefinedOrNull(src1) ||
 			cvUndefinedOrNull(src2) ||	cvUndefinedOrNull(src3) || 	cvUndefinedOrNull(dst) ) 
@@ -899,7 +899,7 @@ function cvMerge(src0, src1, src2, src3, dst){
 //なし
 //解説
 //分割されたチャンネルは各dstの0～3チャンネル全てに代入される
-function cvSplit(src, dst0, dst1, dst2, dst3){
+cv.cvSplit = function (src, dst0, dst1, dst2, dst3){
 	try{
 		if(cvUndefinedOrNull(src) || cvUndefinedOrNull(dst0) ||
 			cvUndefinedOrNull(dst1) ||	cvUndefinedOrNull(dst2) || 	cvUndefinedOrNull(dst3) ) 
@@ -942,7 +942,7 @@ function cvSplit(src, dst0, dst1, dst2, dst3){
 //src IplImage型 原画像
 //出力
 //IplImage型 2のべき乗になった画像 値は鏡面置換
-function cvPowerOfTwo(src){
+cv.cvPowerOfTwo = function (src){
 	var dst = null;
 	try{
 		if(cvUndefinedOrNull(src)) throw "src" + ERROR.IS_UNDEFINED_OR_NULL;
@@ -995,7 +995,7 @@ function cvPowerOfTwo(src){
 //height 整数 クロッピングする画像の縦幅
 //出力
 //IplImage型 クロッピングされた画像
-function cvCloping(src, xs, ys, width, height){
+cv.cvCloping = function (src, xs, ys, width, height){
 	var dst = null;
 	try{
 		if(cvUndefinedOrNull(src) || 
@@ -1034,7 +1034,7 @@ function cvCloping(src, xs, ys, width, height){
 //解説
 //srcのwidthとheight共に2のべき乗である必要がある
 //計算結果は実数値が最初のチャンネル、虚数値がふたつめのチャンネルに代入される 
-function cvFFT(src, isForward){
+cv.cvFFT = function (src, isForward){
 	try{
 		if(cvUndefinedOrNull(src)) throw "src" + ERROR.IS_UNDEFINED_OR_NULL;
 		if(cvUndefinedOrNull(isForward)) isForward = true;
@@ -1165,7 +1165,7 @@ function cvFFT(src, isForward){
 //dst IplImage型 dftした結果が保存される RGB表色系ならRに実数 Gに虚数が代入される
 //flags
 //nonzero_rows
-function cvDFT(src, dst, flags, nonzero_rows){
+cv.cvDFT = function (src, dst, flags, nonzero_rows){
 	try{
 		if(cvUndefinedOrNull(src) || cvUndefinedOrNull(dst) || cvUndefinedOrNull(flags))
 			throw "sizes or dst or flags" + ERROR.IS_UNDEFINED_OR_NULL;
@@ -1246,7 +1246,7 @@ function cvDFT(src, dst, flags, nonzero_rows){
 //CvHistogramのインスタンス
 //説明
 //ヒストグラムのビン幅はsizesとrangesで決まる
-function cvCreateHist(dims, sizes, type, ranges, uniform){
+cv.cvCreateHist = function (dims, sizes, type, ranges, uniform){
 	var hist = new CvHistogram();
 	try{
 		if(cvUndefinedOrNull(sizes.length) || cvUndefinedOrNull(ranges.length))
@@ -1290,7 +1290,7 @@ function cvCreateHist(dims, sizes, type, ranges, uniform){
 //mask IplImage型 0か255のマスク画像 省略可
 //出力
 //なし 第２引数のhistに結果が代入される 
-function cvCalcHist(src, hist, accumulate, mask){
+cv.cvCalcHist = function (src, hist, accumulate, mask){
 	try{
 		if(cvUndefinedOrNull(src) || cvUndefinedOrNull(hist))
 			throw "src or hist" + ERROR.IS_UNDEFINED_OR_NULL;
@@ -1325,7 +1325,7 @@ function cvCalcHist(src, hist, accumulate, mask){
 //src IplImage型 ヒストグラムを均一化する画像
 //dst IplImage型 ヒストグラムが均一化された画像画像
 //color int型 0縲鰀3のみ どの色情報を均一化するか
-function cvEqualizeHist(src, dst, color){
+cv.cvEqualizeHist = function (src, dst, color){
 	try{
 		if(cvUndefinedOrNull(src) || cvUndefinedOrNull(dst))
 			throw "src or dst" + ERROR.IS_UNDEFINED_OR_NULL;
@@ -1418,7 +1418,7 @@ function cvEqualizeHist(src, dst, color){
 //mask IplImage型 0か255のマスク画像 省略可
 //出力
 //なし
-function cvMinMaxLoc(src, min_val, max_val, min_locs, max_locs, mask){
+cv.cvMinMaxLoc = function (src, min_val, max_val, min_locs, max_locs, mask){
 	
 	try{
 		if(cvUndefinedOrNull(src) || 
@@ -1466,7 +1466,7 @@ function cvMinMaxLoc(src, min_val, max_val, min_locs, max_locs, mask){
 //src IplImage型 計算対象となる画像
 //出力
 //CvScalar型 RGB表色系ならr,g,b,aの結果が代入されている
-function cvCountNonZero(src){
+cv.cvCountNonZero = function (src){
 	var rtn = null;	
 	try{
 		if(cvUndefinedOrNull(src)) throw "src" + ERROR.IS_UNDEFINED_OR_NULL;
@@ -1495,7 +1495,7 @@ function cvCountNonZero(src){
 //src IplImage型 計算対象となる画像
 //出力
 //CvScalar型 RGB表色系ならr,g,b,aの結果が代入されている
-function cvSum(src){
+cv.cvSum = function (src){
 	var rtn = null;
 	try{
 		if(cvUndefinedOrNull(src)) throw "src" + ERROR.IS_UNDEFINED_OR_NULL;
@@ -1524,7 +1524,7 @@ function cvSum(src){
 //mask IplImage型 0か255のマスク画像 省略可
 //出力
 //CvScalar型 RGB表色系ならr,g,b,aの結果が代入されている
-function cvAvg(src, mask){
+cv.cvAvg = function (src, mask){
 	var rtn = null;
 	try{
 		if(cvUndefinedOrNull(src)) throw "src" + ERROR.IS_UNDEFINED_OR_NULL;
@@ -1552,7 +1552,7 @@ function cvAvg(src, mask){
 //mask IplImage型 0か255のマスク画像 省略可
 //出力
 //なし
-function cvAvgVrn(src, mean, vrn, mask){
+cv.cvAvgVrn = function (src, mean, vrn, mask){
 	try{
 		if(cvUndefinedOrNull(src) || cvUndefinedOrNull(mean) || cvUndefinedOrNull(vrn))
 			throw "src or mean or vrn" + ERROR.IS_UNDEFINED_OR_NULL;
@@ -1586,7 +1586,7 @@ function cvAvgVrn(src, mean, vrn, mask){
 //mask IplImage型 0か255のマスク画像 省略可
 //出力
 //なし
-function cvAvgSdv(src, mean, std, mask){
+cv.cvAvgSdv = function (src, mean, std, mask){
 	cvAvgVrn(src, mean, std, mask);
 	for(var k = 0 ; k < std.length ; k++)
 		std[k] = Math.sqrt(std[k]);
@@ -1599,7 +1599,7 @@ function cvAvgSdv(src, mean, std, mask){
 //IplImage型
 //GRAY表色系の画像
 //各画素に0からnまでのラベルが代入されている
-function cvLabeling(src){
+cv.cvLabeling = function (src){
 	var dst = null;
 	try{
 		var dmy = cvCloneImage(src);
@@ -1679,7 +1679,7 @@ function cvLabeling(src){
 //thickness 奇数 円周の太さ 0以上の値 0の場合、円は塗り潰される 省略可
 //出力
 //なし
-function cvCircle(img, center, radius, color, thickness){
+cv.cvCircle = function (img, center, radius, color, thickness){
 	try{
 		if(cvUndefinedOrNull(img) || cvUndefinedOrNull(center) 
 			|| cvUndefinedOrNull(radius) || cvUndefinedOrNull(color))
@@ -1758,7 +1758,7 @@ function cvCircle(img, center, radius, color, thickness){
 //thickness 奇数 外周の太さ 0以上の値 0の場合、矩形は塗り潰される 省略可
 //出力
 //なし
-function cvRectangle(img, pt1, pt2, color, thickness){
+cv.cvRectangle = function (img, pt1, pt2, color, thickness){
 	try{
 		if(cvUndefinedOrNull(img) || cvUndefinedOrNull(pt1) 
 			|| cvUndefinedOrNull(pt2) || cvUndefinedOrNull(color))
@@ -1815,7 +1815,7 @@ function cvRectangle(img, pt1, pt2, color, thickness){
 //isSegment true/false trueなら線分 falseなら直線 省略可
 //出力
 //なし
-function cvLine(img, pt1, pt2, color, thickness, isSegment){
+cv.cvLine = function (img, pt1, pt2, color, thickness, isSegment){
 	try{
 		if(cvUndefinedOrNull(img) || cvUndefinedOrNull(pt1) 
 			|| cvUndefinedOrNull(pt2) || cvUndefinedOrNull(color))
@@ -1941,7 +1941,7 @@ function cvLine(img, pt1, pt2, color, thickness, isSegment){
 //iterations 整数 変換する回数
 //出力
 //なし
-function cvMorphologyEx(src, dst, element, operation, iterations){
+cv.cvMorphologyEx = function (src, dst, element, operation, iterations){
 	try{
 		if(cvUndefinedOrNull(src) || cvUndefinedOrNull(dst) ||
 		 cvUndefinedOrNull(element) || cvUndefinedOrNull(operation) ||
@@ -1991,7 +1991,7 @@ function cvMorphologyEx(src, dst, element, operation, iterations){
 //element CvSize型 変換する際に確認する中心画素からの範囲 width,heightともに 3以上の奇数 省略可
 //出力
 //なし
-function cvErode(src, dst, iterations, element){
+cv.cvErode = function (src, dst, iterations, element){
 	try{
 		cvDilateOrErode(src, dst, true, iterations, element);
 	}
@@ -2008,7 +2008,7 @@ function cvErode(src, dst, iterations, element){
 //element CvSize型 変換する際に確認する中心画素からの範囲 width,heightともに 3以上の奇数 省略可
 //出力
 //なし
-function cvDilate(src, dst, iterations, element){
+cv.cvDilate = function (src, dst, iterations, element){
 	try{
 		cvDilateOrErode(src, dst, false, iterations, element);
 	}
@@ -2025,7 +2025,7 @@ function cvDilate(src, dst, iterations, element){
 //tilted_sum IplImage型 45度回転させた積分画像 省略可
 //出力
 //なし
-function cvIntegral(src, dst, sqsum, tilted_sum){
+cv.cvIntegral = function (src, dst, sqsum, tilted_sum){
 	try{
 		if(cvUndefinedOrNull(src) || cvUndefinedOrNull(dst)) throw "src or dst" + ERROR.IS_UNDEFINED_OR_NULL;
 		if(src.width != dst.width || src.height != dst.height) throw ERROR.DIFFERENT_SIZE;
@@ -2093,7 +2093,7 @@ function cvIntegral(src, dst, sqsum, tilted_sum){
 //src IplImage型 複製される画像
 //出力
 //IplImage型 複製された画像
-function cvCloneImage(src){
+cv.cvCloneImage = function (src){
 	var dst = null;
 
 	try{
@@ -2114,7 +2114,7 @@ function cvCloneImage(src){
 //dst IplImage型 複製された画素の画像
 //出力
 //なし
-function cvCopy(src, dst){
+cv.cvCopy = function (src, dst){
 	try{
 		if(cvUndefinedOrNull(src) || cvUndefinedOrNull(dst)) throw "src or dst" + ERROR.IS_UNDEFINED_OR_NULL;
 		
@@ -2149,7 +2149,7 @@ function cvCopy(src, dst){
 //CV_THRESHOLD_TYPE.THRESH_OTSUなら srcの画素 > thresholdでthreshold、違えば0をdstの画素に代入
 //出力
 //なし
-function cvThreshold(src, dst, threshold, max_value, threshold_type){
+cv.cvThreshold = function (src, dst, threshold, max_value, threshold_type){
 	try{
 		if(cvUndefinedOrNull(src) || cvUndefinedOrNull(dst) || 
 			cvUndefinedOrNull(threshold) || cvUndefinedOrNull(max_value) ||
@@ -2266,7 +2266,7 @@ function cvThreshold(src, dst, threshold, max_value, threshold_type){
 //interpolation CV_INTER構造体 補完の種類　省略可
 //出力
 //なし
-function cvResize(src, dst, interpolation){
+cv.cvResize = function (src, dst, interpolation){
 	try{
 		if(cvUndefinedOrNull(src) || cvUndefinedOrNull(dst)) throw "src or dst" + ERROR.IS_UNDEFINED_OR_NULL;
 		if(cvUndefinedOrNull(interpolation)) interpolation = CV_INTER.NN;
@@ -2416,7 +2416,7 @@ function cvResize(src, dst, interpolation){
 //color 整数 画像のどの色を変換するか決める値 0～2
 //出力
 //なし
-function cvLUT(src, dst, lut, color){
+cv.cvLUT = function (src, dst, lut, color){
 	try{
 		if(cvUndefinedOrNull(src) || cvUndefinedOrNull(dst) || cvUndefinedOrNull(color))
 			throw "引数のどれか" + ERROR.IS_UNDEFINED_OR_NULL; 
@@ -2445,7 +2445,7 @@ function cvLUT(src, dst, lut, color){
 //color 整数 画像のどの色を変換するか決める値 0～2
 //出力
 //なし
-function cvToneCurve(src, dst, underX, underY, overX, overY, color){
+cv.cvToneCurve = function (src, dst, underX, underY, overX, overY, color){
 	try{
 		if(cvUndefinedOrNull(src) || cvUndefinedOrNull(dst) ||
 			cvUndefinedOrNull(underX) || cvUndefinedOrNull(underY) ||
@@ -2477,7 +2477,7 @@ function cvToneCurve(src, dst, underX, underY, overX, overY, color){
 //blend_mode CV_BLEND_MODE 混ぜ方の種類 省略可
 //出力
 //なし
-function cvBlendImage(bg, fg, dst, blend_mode){
+cv.cvBlendImage = function (bg, fg, dst, blend_mode){
 	try{
 		if(cvUndefinedOrNull(bg) || cvUndefinedOrNull(fg)  || cvUndefinedOrNull(dst))
 			throw "fg or bg or dst" + ERROR.IS_UNDEFINED_OR_NULL;
@@ -2606,7 +2606,7 @@ function cvBlendImage(bg, fg, dst, blend_mode){
 //param2 奇数 距離のsigmaの値 省略可
 //param3 未使用
 //param4 未使用
-function cvSmooth(src, dst, smooth_type, param1, param2, param3, param4){
+cv.cvSmooth = function (src, dst, smooth_type, param1, param2, param3, param4){
 	try{
 		if(cvUndefinedOrNull(src) || cvUndefinedOrNull(dst)) throw "src or dst" + ERROR.IS_UNDEFINED_OR_NULL; 
 		if(src.width != dst.width || src.height != dst.height) throw ERROR.DIFFERENT_SIZE;
@@ -2841,7 +2841,7 @@ function cvSmooth(src, dst, smooth_type, param1, param2, param3, param4){
 //解説
 //xorder,yorderはそれぞれ横方向縦方向のソーベルフィルタの処理回数を意味する
 //xorderかyorderのどちらかは0にする
-function cvSobel(src, dst, xorder, yorder, aperture_size){
+cv.cvSobel = function (src, dst, xorder, yorder, aperture_size){
 	try{
 		if(cvUndefinedOrNull(src) || cvUndefinedOrNull(dst)) throw "src or dst" + ERROR.IS_UNDEFINED_OR_NULL;
 		if(src.width != dst.width || src.height != dst.height) throw ERROR.DIFFERENT_SIZE;
@@ -2922,7 +2922,7 @@ function cvSobel(src, dst, xorder, yorder, aperture_size){
 //解説
 //threshold1 と threshold2 のうち
 //小さいほうがエッジ同士を接続するために用いられ，大きいほうが強いエッジの初期検出に用いられる
-function cvCanny(src, dst, threshold1, threshold2, aperture_size){
+cv.cvCanny = function (src, dst, threshold1, threshold2, aperture_size){
 	try{
 		if(cvUndefinedOrNull(src) || cvUndefinedOrNull(dst) ||
 		cvUndefinedOrNull(threshold1) || cvUndefinedOrNull(threshold2))
@@ -3067,7 +3067,7 @@ function cvCanny(src, dst, threshold1, threshold2, aperture_size){
 //code CV_CODE この値に従って表色系を変換する "X"2"Y"となっておりX表色系からY表色系への変換を意味する
 //出力
 //なし
-function cvCvtColor(src, dst, code){
+cv.cvCvtColor = function (src, dst, code){
 	try{
 		if(cvUndefinedOrNull(src) || cvUndefinedOrNull(dst) || cvUndefinedOrNull(code))
 			throw "src or dst or color" + ERROR.IS_UNDEFINED_OR_NULL; 
@@ -3298,7 +3298,7 @@ function cvCvtColor(src, dst, code){
 //four_arithmetic FOUR_ARITHMETIC 四則演算
 //出力
 //なし
-function cvFourArithmeticOperations(src1, src2, dst, four_arithmetic){
+cv.cvFourArithmeticOperations = function (src1, src2, dst, four_arithmetic){
 	try{
 		if(cvUndefinedOrNull(src1) || cvUndefinedOrNull(src2) || cvUndefinedOrNull(dst) || cvUndefinedOrNull(four_arithmetic))
 			throw "src1 or src2 or dst or four_arithmetic" + ERROR.IS_UNDEFINED_OR_NULL;
@@ -3346,7 +3346,7 @@ function cvFourArithmeticOperations(src1, src2, dst, four_arithmetic){
 //dst IplImage型 src1とsrc2を加算した結果
 //出力
 //なし
-function cvAdd(src1, src2, dst){
+cv.cvAdd = function (src1, src2, dst){
 	try{
 		cvFourArithmeticOperations(src1, src2, dst, FOUR_ARITHMETIC.ADD);
 	}
@@ -3363,7 +3363,7 @@ function cvAdd(src1, src2, dst){
 //dst IplImage型 src1とsrc2を減算した結果
 //出力
 //なし
-function cvSub(src1, src2, dst){
+cv.cvSub = function (src1, src2, dst){
 	try{
 		cvFourArithmeticOperations(src1, src2, dst, FOUR_ARITHMETIC.SUB);
 	}
@@ -3380,7 +3380,7 @@ function cvSub(src1, src2, dst){
 //dst IplImage型 src1とsrc2を割算した結果
 //出力
 //なし
-function cvMul(src1, src2, dst){
+cv.cvMul = function (src1, src2, dst){
 	try{
 		cvFourArithmeticOperations(src1, src2, dst, FOUR_ARITHMETIC.MUL);
 	}
@@ -3397,7 +3397,7 @@ function cvMul(src1, src2, dst){
 //dst IplImage型 src1とsrc2を掛け算した結果
 //出力
 //なし
-function cvDiv(src1, src2, dst){
+cv.cvDiv = function (src1, src2, dst){
 	try{
 		cvFourArithmeticOperations(src1, src2, dst, FOUR_ARITHMETIC.DIV);
 	}
@@ -3412,7 +3412,7 @@ function cvDiv(src1, src2, dst){
 //dst IplImage型 画素が絶対値化された画像
 //出力
 //なし
-function cvConvertScaleAbs(src, dst){
+cv.cvConvertScaleAbs = function (src, dst){
 	try{
 		if(cvUndefinedOrNull(src) || cvUndefinedOrNull(dst)) throw "src or dst" + ERROR.IS_UNDEFINED_OR_NULL;
 		if(src.width != dst.width || src.height != dst.height) throw ERROR.DIFFERENT_SIZE;
@@ -3439,7 +3439,7 @@ function cvConvertScaleAbs(src, dst){
 //element CvSize型 窓関数の縦横幅 奇数 省略可
 //出力
 //なし
-function cvDilateOrErode(src, dst, isDilate, iterations, element){
+cv.cvDilateOrErode = function (src, dst, isDilate, iterations, element){
 	try{
 		if(cvUndefinedOrNull(src) || cvUndefinedOrNull(dst))
 			throw "src or dst" + ERROR.IS_UNDEFINED_OR_NULL;
@@ -3503,7 +3503,7 @@ function cvDilateOrErode(src, dst, isDilate, iterations, element){
 //a 整数 アルファ値
 //出力
 //なし
-function cvSetRGBA(src, c1, c2, c3, a){
+cv.cvSetRGBA = function (src, c1, c2, c3, a){
 	try{
 		if(cvUndefinedOrNull(src)) throw "src" + ERROR.IS_UNDEFINED_OR_NULL;
 		if(cvUndefinedOrNull(c1)) c1 = 255;
@@ -3530,7 +3530,7 @@ function cvSetRGBA(src, c1, c2, c3, a){
 //color CvScalar型 代入する色
 //出力
 //なし
-function cvSet(src, color){
+cv.cvSet = function (src, color){
 	try{
 		if(cvUndefinedOrNull(src) || cvUndefinedOrNull(color))
 			throw "src or color" + ERROR.IS_UNDEFINED_OR_NULL;
@@ -3553,7 +3553,7 @@ function cvSet(src, color){
 //src IplImage型 ゼロが代入される画像
 //出力
 //なし
-function cvZero(src){
+cv.cvZero = function (src){
 	try{
 		if(cvUndefinedOrNull(src)) throw "src" + ERROR.IS_UNDEFINED_OR_NULL;
 		for(var i = 0 ; i < src.height ; i++){
@@ -3576,7 +3576,7 @@ function cvZero(src){
 //value チェックされる入力
 //出力
 //true/false
-function cvUndefinedOrNull(value){
+cv.cvUndefinedOrNull = function (value){
 	return (value === undefined || value === null) ? true : false;
 }
 
@@ -3587,7 +3587,7 @@ function cvUndefinedOrNull(value){
 //inputId Id型 イベントの発生元のId
 //出力
 //なし
-function cvLoadImagePre(event, inputId){
+cv.cvLoadImagePre = function (event, inputId){
 	try{
 		if(cvUndefinedOrNull(event) || cvUndefinedOrNull(inputId))
 				throw "event or inputId" + ERROR.IS_UNDEFINED_OR_NULL;
@@ -3609,7 +3609,7 @@ function cvLoadImagePre(event, inputId){
 //maxSize 整数 srcの縦or横幅がこの値以上なら、この値となるように大きさを変換して代入される -1なら処理されない 省略可
 //出力
 //なし
-function cvLoadImage(event, imgId, iplImage, maxSize){	
+cv.cvLoadImage = function (event, imgId, iplImage, maxSize){	
 	try{
 		if(cvUndefinedOrNull(event) || cvUndefinedOrNull(imgId) || cvUndefinedOrNull(iplImage))
 				throw "event or imgId or iplImage" + ERROR.IS_UNDEFINED_OR_NULL;
@@ -3633,7 +3633,7 @@ function cvLoadImage(event, imgId, iplImage, maxSize){
 //maxSize 整数 srcの縦or横幅がこの値以上なら、この値となるように大きさを変換して代入される -1なら処理されない 省略可
 //出力
 //なし
-function cvLoadImages(event, imgIds, iplImages, maxSize)
+cv.cvLoadImages = function (event, imgIds, iplImages, maxSize)
 {
 	try{
 		for(var i = 0 ; i < event.target.files.length ; i++){
@@ -3659,7 +3659,7 @@ function cvLoadImages(event, imgIds, iplImages, maxSize)
 //maxSize 整数 srcの縦or横幅がこの値以上なら、この値となるように大きさを変換して代入される -1なら処理されない 省略可
 //出力
 //なし
-function cvLoadImageAtEventFile(file, imgId, iplImage, maxSize)
+cv.cvLoadImageAtEventFile = function (file, imgId, iplImage, maxSize)
 {
 	try{
 		if(cvUndefinedOrNull(maxSize)) maxSize = -1;
@@ -3711,7 +3711,7 @@ function cvLoadImageAtEventFile(file, imgId, iplImage, maxSize)
 //maxSize 整数 srcの縦or横幅がこの値以上なら、この値となるように大きさを変換して代入される -1なら処理されない 省略可
 //出力
 //なし
-function cvLoadImageToCanvas(event, canvasId, iplImage, maxSize){
+cv.cvLoadImageToCanvas = function (event, canvasId, iplImage, maxSize){
 	try{
 		if(cvUndefinedOrNull(event) || cvUndefinedOrNull(canvasId) || cvUndefinedOrNull(iplImage))
 				throw "event or canvasId or iplImage" + ERROR.IS_UNDEFINED_OR_NULL;
@@ -3734,7 +3734,7 @@ function cvLoadImageToCanvas(event, canvasId, iplImage, maxSize){
 //maxSize 整数 srcの縦or横幅がこの値以上なら、この値となるように大きさを変換して代入される -1なら処理されない 省略可
 //出力
 //なし
-function cvLoadImageToCanvasAtEventFile(file, canvasId, iplImage, maxSize)
+cv.cvLoadImageToCanvasAtEventFile = function (file, canvasId, iplImage, maxSize)
 {
 	try{
 		if(cvUndefinedOrNull(maxSize)) maxSize = -1;
@@ -3779,7 +3779,7 @@ function cvLoadImageToCanvasAtEventFile(file, canvasId, iplImage, maxSize)
 //height 整数 生成するIplImageのheight
 //出力
 //IplImage
-function cvCreateImage(width, height){
+cv.cvCreateImage = function (width, height){
 	var dst = null;
 	try{
 		if(cvUndefinedOrNull(width) || cvUndefinedOrNull(height))
@@ -3820,7 +3820,7 @@ function cvCreateImage(width, height){
 //iplImage IplImage型 imgに転送する画像
 //出力
 //なし
-function cvShowImage(imgId, iplImage){
+cv.cvShowImage = function (imgId, iplImage){
 	try{
 		if(cvUndefinedOrNull(imgId) || cvUndefinedOrNull(iplImage))
 			throw "imgId or iplImage" + ERROR.IS_UNDEFINED_OR_NULL;
@@ -3852,7 +3852,7 @@ function cvShowImage(imgId, iplImage){
 //iplImage IplImage型 canvasに転送する画像
 //出力
 //なし
-function cvShowImageToCanvas(canvasId, iplImage){
+cv.cvShowImageToCanvas = function (canvasId, iplImage){
 	try{
 		if(cvUndefinedOrNull(canvasId) || cvUndefinedOrNull(iplImage))
 			throw "canvasId or iplImage" + ERROR.IS_UNDEFINED_OR_NULL;
@@ -3870,7 +3870,7 @@ function cvShowImageToCanvas(canvasId, iplImage){
 //iplImage IplImage型 canvasに転送する画像
 //出力
 //なし
-function cvShowImageToCanvasElement(canvasElement, iplImage){
+cv.cvShowImageToCanvasElement = function (canvasElement, iplImage){
 	try{
 		if(cvUndefinedOrNull(canvasElement) || cvUndefinedOrNull(iplImage))
 			throw "canvasElement or iplImage" + ERROR.IS_UNDEFINED_OR_NULL;
@@ -3890,7 +3890,7 @@ function cvShowImageToCanvasElement(canvasElement, iplImage){
 //iplImage IplImage型 自身のimageDataへ自身のRGBAの値がコピーされる画像
 //出力
 //なし
-function cvRGBA2ImageData(iplImage){
+cv.cvRGBA2ImageData = function (iplImage){
 	try{
 		if(cvUndefinedOrNull(iplImage)) throw "iplImage" + ERROR.IS_UNDEFINED_OR_NULL;
 		for(var i = 0 ; i < iplImage.height ; i++){
@@ -3914,7 +3914,7 @@ function cvRGBA2ImageData(iplImage){
 //iplImage IplImage型 自身のRGBAへ自身のimageDataの値がコピーされる画像
 //出力
 //なし
-function cvImageData2RGBA(iplImage){
+cv.cvImageData2RGBA = function (iplImage){
 	try{
 		if(cvUndefinedOrNull(iplImage)) throw "iplImage" + ERROR.IS_UNDEFINED_OR_NULL;
 		for(var i = 0 ; i < iplImage.height ; i++){
@@ -3938,7 +3938,7 @@ function cvImageData2RGBA(iplImage){
 //canvasId canvasタグ canvasタグのオブジェクト
 //出力
 //IplImage型
-function cvGetIplImageAtCanvas(canvasId){
+cv.cvGetIplImageAtCanvas = function (canvasId){
 	var iplImage = null;
 	try{
 		var canvasElement = document.getElementById(canvasId);
@@ -3955,7 +3955,7 @@ function cvGetIplImageAtCanvas(canvasId){
 //canvasElement canvasエレメント canvasのオブジェクト
 //出力
 //IplImage型
-function cvGetIplImageAtCanvasElement(canvasElement){
+cv.cvGetIplImageAtCanvasElement = function (canvasElement){
 	var iplImage = null;
 	try{
 		if(cvUndefinedOrNull(canvasElement))
@@ -3979,7 +3979,7 @@ function cvGetIplImageAtCanvasElement(canvasElement){
 //iplImage型
 //備考
 //ローカル環境では動かない
-function cvGetIplImageAtImg(imgId){
+cv.cvGetIplImageAtImg = function (imgId){
 	var iplImage = null;
 	try{
 		if(cvUndefinedOrNull(imgId)) throw "imgId" + ERROR.IS_UNDEFINED_OR_NULL;
@@ -4016,7 +4016,7 @@ function cvGetIplImageAtImg(imgId){
 //image imgタグ imgタグのオブジェクト
 //出力
 //canvasタグ
-function cvGetCanvasAtImgElement(image){
+cv.cvGetCanvasAtImgElement = function (image){
 	var canvas = null;
 	try{
 		if(cvUndefinedOrNull(image)) throw "image" + ERROR.IS_UNDEFINED_OR_NULL;
@@ -4039,7 +4039,7 @@ function cvGetCanvasAtImgElement(image){
 
 
 //CvMatの内容をalertで表示
-function cvAlertMat(src){
+cv.cvAlertMat = function (src){
 	try{
 		var str = "";
 		for(var i = 0 ; i < src.rows ; i++){
@@ -4056,7 +4056,7 @@ function cvAlertMat(src){
 }
 
 // get Image true size
-function cvGetOriginalSizeAtImgElement(image){
+cv.cvGetOriginalSizeAtImgElement = function (image){
 	var w = 0 , h = 0 ;
 	try{
 		if(cvUndefinedOrNull(image)) throw "image" + ERROR.IS_UNDEFINED_OR_NULL;
