@@ -50,7 +50,7 @@ cv.cvInPaint = function (src, mask, dst, inpaintRadius, flags){
 		if(flags != cv.cv_INPAINT.TELEA)
 			throw "flagsは現在cv.cv_INPAINT.TELENAしかサポートしていません";
 
-		function cv.cvInPaintOneLoop(src, mask, dst, inpaintRadius, flags){
+		function cvInPaintOneLoop(src, mask, dst, inpaintRadius, flags){
 			
 			// -- maskのエッジ探索 --
 			var edge = new cv.cvCreateImage(src.width, src.height);
