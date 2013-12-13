@@ -1,11 +1,11 @@
-
 ////////////////////////////////////開発途中////////////////////////////////////
+(function(){
 
-
-
+ var cv = {};
+ 
 //------------------メソッド------------------------
 
-function cvKMeans2(samples, cluster_count, labels, termcrit){
+cv.cvKMeans2 = function (samples, cluster_count, labels, termcrit){
 	try{
 		if(cvUndefinedOrNull(samples) || cvUndefinedOrNull(cluster_count) || cvUndefinedOrNull(labels)
 			|| cvUndefinedOrNull(termcrit))
@@ -38,7 +38,7 @@ function cvKMeans2(samples, cluster_count, labels, termcrit){
 	}
 }
 
-function cvInPaint(src, mask, dst, inpaintRadius, flags){
+cv.cvInPaint = function (src, mask, dst, inpaintRadius, flags){
 	try{
 		if(cvUndefinedOrNull(src) || cvUndefinedOrNull(mask) || cvUndefinedOrNull(dst)
 			|| cvUndefinedOrNull(inpaintRadius))
@@ -131,7 +131,7 @@ function cvInPaint(src, mask, dst, inpaintRadius, flags){
 //  param1はrhoの序数（荒い距離はrho,詳細な距離ではrho/param1）
 //  param2はthetaの序数 （荒い角度はtheta,詳細な角度ではtheta/param2）
 //http://codezine.jp/article/detail/153
-function cvHoughLines2(src, method, rho, theta, threshold, param1, param2){
+cv.cvHoughLines2 = function cvHoughLines2(src, method, rho, theta, threshold, param1, param2){
 	var rtn = null;
 	try{
 		if(cvUndefinedOrNull(src) || cvUndefinedOrNull(method) ||
@@ -226,7 +226,7 @@ function cvHoughLines2(src, method, rho, theta, threshold, param1, param2){
 //
 //------------------データ型------------------------
 //canvasのRGBA値は0縲鰀255の値しかもてないため専用の画像データ型を用意
-var IplImage = function(){
+cv.IplImage = function(){
 	width: 0;
 	height: 0;
 	canvas: null;
@@ -234,12 +234,12 @@ var IplImage = function(){
 	RGBA: null;
 }
 
-var CvMat = function(){
+cv.CvMat = function(){
 	rows: 0;
 	cols: 0;
 	vals: null;
 }
-var CvHistogram = function(){
+cv.CvHistogram = function(){
 	type: 0;
 	bins: null;
 	thres: null;
@@ -248,23 +248,23 @@ var CvHistogram = function(){
 	ranges: null;
 }
 
-var CvScalar = function(){
+cv.CvScalar = function(){
 	this.val = new Array(0, 0, 0, 255);
 }
 
-var CvPoint = function(){
+cv.CvPoint = function(){
 	x: 0;
 	y: 0;
 }
 
-var CvSize = function(){
+cv.CvSize = function(){
 	width: 0;
 	height: 0;
 }
 
 
 //反復アルゴリズムの終了条件
-var CvTermCriteria = function(){
+cv.CvTermCriteria = function(){
 	type: 0; //CV_TERMCRIT定数の組み合わせ
 	max_iter: 0; //反復数の最大値
 	epsilon: 0; //目標精度
@@ -274,33 +274,33 @@ var CvTermCriteria = function(){
 
 //反復アルゴリズムのための終了条件
 //CvTermCriteria型の変数に利用する
-var CV_TERMCRIT = {
+cv.CV_TERMCRIT = {
 	ITER: 0,
 	NUMBER: 0,
 	EPS: 2
 }
 //ハフ変換の種類
-var CV_HOUGH = {
+cv.CV_HOUGH = {
 	STANDARD : 0,
 	PROBABILISTIC : 1,
 	MULTI_SCALE : 2
 }
 
 //逆行列の演算の種類
-var CV_INV = {
+cv.CV_INV = {
 	LU: 0,
 	SVD: 1,
 	SVD_SYM: 2
 }
 
 //ヒストグラムの種類
-var CV_HIST = {
+cv.CV_HIST = {
 	ARRAY: 0,
 	SPARSE: 1
 }
 
 //表色系変換の種類
-var CV_CODE = {
+cv.CV_CODE = {
 	RGB2GRAY: 0,
 	RGB2HSV: 1,
 	HSV2RGB: 2,
@@ -311,7 +311,7 @@ var CV_CODE = {
 }
 
 //ブレンドの種類
-var CV_BLEND_MODE = {
+cv.CV_BLEND_MODE = {
 	OVER_LAY: 0, //オーバーレイ
 	SCREEN: 1, //スクリーン
 	HARD_LIGHT: 2, // ハードライト
@@ -328,7 +328,7 @@ var CV_BLEND_MODE = {
 }
 
 //スムージングの種類
-var CV_SMOOTH_TYPE = {
+cv.CV_SMOOTH_TYPE = {
 	BLUR_NO_SCALE: 0,
 	BLUR: 1,
 	GAUSSIAN: 2,
@@ -337,7 +337,7 @@ var CV_SMOOTH_TYPE = {
 }
 
 //閾値処理の種類
-var CV_THRESHOLD_TYPE = {
+cv.CV_THRESHOLD_TYPE = {
 	THRESH_BINARY: 0,
 	THRESH_BINARY_INV: 1,
 	THRESH_TRUNC: 2,
@@ -347,7 +347,7 @@ var CV_THRESHOLD_TYPE = {
 }
 
 //モルフォロジー変換の種類
-var CV_MOP = {
+cv.CV_MOP = {
 	OPEN : 0,
 	CLOSE : 1,
 	GRADIENT : 2,
@@ -356,7 +356,7 @@ var CV_MOP = {
 }
 
 //DFTの種類
-var CV_DXT = {
+cv.CV_DXT = {
 	FORWARD: 0, //順変換 スケーリングなし
 	INVERSE: 1, //逆変換 スケーリングなし
 	FORWARD_SCALE: 2, //順変換 スケーリングあり
@@ -365,7 +365,7 @@ var CV_DXT = {
 
 
 //四則演算の種類
-var FOUR_ARITHMETIC = {
+cv.FOUR_ARITHMETIC = {
 	ADD : 0,
 	SUB : 1,
 	MULT : 2,
@@ -373,7 +373,7 @@ var FOUR_ARITHMETIC = {
 }
 
 //リサイズの種類
-var CV_INTER = {
+cv.CV_INTER = {
 	NN : 0,
 	LINEAR : 1,
 	AREA : 2,
@@ -381,23 +381,23 @@ var CV_INTER = {
 }
 
 //インペイントの種類
-var CV_INPAINT = {
+cv.CV_INPAINT = {
 	NS: 0,
 	TELEA: 1
 }
 
 //反復アルゴリズムのための終了条件
 //CvTermCriteria型の変数に利用する
-var CV_TERMCRIT = {
+cv.CV_TERMCRIT = {
 	ITER: 1,
 	EPS: 2
 }
 
 //チャンネル数
-var CHANNELS = 4;
+cv.CHANNELS = 4;
 
 //エラー文
-var ERROR = {
+cv.ERROR = {
 	IS_UNDEFINED_OR_NULL : "がundefinedかnullです",
 	DIFFERENT_SIZE : "IplImageサイズは全て同じにして下さい",
 	DIFFERENT_ROWS_OR_COLS: "行と列が正しくありません",
@@ -417,7 +417,7 @@ var ERROR = {
 //画像読み込み時に利用される変数
 //任意のダミー画像のパスを指定
 //1*1の画像を推奨
-var DMY_IMG;
+var DMY_IMG="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEHAAEALAAAAAABAAEAAAICTAEAOw==";
 
 
 //------------------メソッド------------------------
@@ -431,7 +431,7 @@ var DMY_IMG;
 //angleInDegrees bool型 角度の表記にラジアン（デフォルト），または度のどちらを用いるかを指定するフラグ trueでラジアン
 //出力
 //なし
-function cvCartToPolar(xImage, yImage, magImage, angImage, angleInDegrees){
+cv.cvCartToPolar=function (xImage, yImage, magImage, angImage, angleInDegrees){
 	try{
 		if(cvUndefinedOrNull(xImage) || cvUndefinedOrNull(yImage) ||
 			cvUndefinedOrNull(magImage) || cvUndefinedOrNull(angImage))
@@ -470,7 +470,7 @@ function cvCartToPolar(xImage, yImage, magImage, angImage, angleInDegrees){
 //cols 整数 (x座標)
 //出力
 //CvMat型
-function cvCreateMat(rows, cols){
+cv.cvCreateMat = function cvCreateMat(rows, cols){
 	var rtn = null;
 	try{
 		if(cvUndefinedOrNull(rows) || cvUndefinedOrNull(cols))
@@ -498,7 +498,7 @@ function cvCreateMat(rows, cols){
 //val 数値 代入される値
 //出力
 //なし
-function cvmSet(mat, row, col, value){
+cv.cvmSet = function (mat, row, col, value){
 	try{
 		if(cvUndefinedOrNull(mat) || cvUndefinedOrNull(value)|| 
 			cvUndefinedOrNull(row) || cvUndefinedOrNull(col))
@@ -520,7 +520,7 @@ function cvmSet(mat, row, col, value){
 //col 整数 取得する列番号(x座標)
 //出力
 //数値
-function cvmGet(mat, row, col){
+cv.cvmGet = function (mat, row, col){
 	var rtn = null;
 	try{
 		if(cvUndefinedOrNull(mat) || cvUndefinedOrNull(row) || cvUndefinedOrNull(col))
@@ -543,7 +543,7 @@ function cvmGet(mat, row, col){
 //matX CvMat型 結果が代入される行列
 //出力
 //なし
-function cvmAdd(matA, matB, matX){
+cv.cvmAdd = function cvmAdd(matA, matB, matX){
 	try{
 		if(cvUndefinedOrNull(matA) || cvUndefinedOrNull(matB)|| cvUndefinedOrNull(matX))
 				throw "引数のどれか" + ERROR.IS_UNDEFINED_OR_NULL;
@@ -571,7 +571,7 @@ function cvmAdd(matA, matB, matX){
 //matX CvMat型 結果が代入される行列
 //出力
 //なし
-function cvmSub(matA, matB, matX){
+cv.cvmSub = function (matA, matB, matX){
 	try{
 		if(cvUndefinedOrNull(matA) || cvUndefinedOrNull(matB)|| cvUndefinedOrNull(matX))
 				throw "引数のどれか" + ERROR.IS_UNDEFINED_OR_NULL;
@@ -4094,3 +4094,9 @@ function cvGetOriginalSizeAtImgElement(image){
 
     return {width:w, height:h};
 }
+ if ('undefined' == typeof module) {
+    window.cv = cv;
+  } else {
+    module.exports = cv;
+  }
+})();
