@@ -2284,12 +2284,12 @@ cv.cvResize = function (src, dst, interpolation){
 				for(var  c = 0 ; c < CHANNELS ; c++){
 					var v = 0;
 					switch(interpolation){
-					case cv.cv_INTER.NN:
+					case cv.CV_INTER.NN:
 						w = Math.floor(w + 0.5);
 						h = Math.floor(h + 0.5);
 						v = src.RGBA[c + (w + h * src.width) * CHANNELS];
 					break;
-					case cv.cv_INTER.LINEAR:
+					case cv.CV_INTER.LINEAR:
 						var intW = Math.floor(w);
 						var intH = Math.floor(h);
 						var nextW = intW + 1; if(nextW > src.width - 1) nextW = src.width - 2;
