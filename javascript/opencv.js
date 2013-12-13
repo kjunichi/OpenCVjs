@@ -395,6 +395,7 @@ cv.CV_TERMCRIT = {
 
 //チャンネル数
 cv.CHANNELS = 4;
+var CHANNELS=cv.CHANNELS;
 
 //エラー文
 cv.ERROR = {
@@ -3070,22 +3071,22 @@ cv.cvCanny = function (src, dst, threshold1, threshold2, aperture_size){
 cv.cvtColor = function (src, dst, code){
 	try{
 		if(cv.cvUndefinedOrNull(src) || cv.cvUndefinedOrNull(dst) || cv.cvUndefinedOrNull(code))
-			throw "src or dst or color" + ERROR.IS_UNDEFINED_OR_NULL; 
-		if(src.width != dst.width || src.height != dst.height) throw ERROR.DIFFERENT_SIZE;
+			throw "src or dst or color" + cv.ERROR.IS_UNDEFINED_OR_NULL; 
+		if(src.width != dst.width || src.height != dst.height) throw cv.ERROR.DIFFERENT_SIZE;
 		
 		switch(code){
-		case cv.cv_CODE.RGB2GRAY:
+		case cv.CV_CODE.RGB2GRAY:
 			for (var i = 0; i < dst.height; i++) {
 				for (var j = 0; j < dst.width; j++) {
 				
-					var v = (src.RGBA[(j + i * dst.width) * CHANNELS] + 
-							src.RGBA[1 + (j + i * dst.width) * CHANNELS] + 
-							src.RGBA[2 + (j + i * dst.width) * CHANNELS]) / 3;
+					var v = (src.RGBA[(j + i * dst.width) * cv.CHANNELS] + 
+							src.RGBA[1 + (j + i * dst.width) * cv.CHANNELS] + 
+							src.RGBA[2 + (j + i * dst.width) * cv.CHANNELS]) / 3;
 							
-					dst.RGBA[(j + i * dst.width) * CHANNELS] = v;
-					dst.RGBA[1 + (j + i * dst.width) * CHANNELS] = v;
-					dst.RGBA[2 + (j + i * dst.width) * CHANNELS] = v;
-					dst.RGBA[3 + (j + i * dst.width) * CHANNELS] = src.RGBA[3 + (j + i * dst.width) * CHANNELS];
+					dst.RGBA[(j + i * dst.width) * cv.CHANNELS] = v;
+					dst.RGBA[1 + (j + i * dst.width) * cv.CHANNELS] = v;
+					dst.RGBA[2 + (j + i * dst.width) * cv.CHANNELS] = v;
+					dst.RGBA[3 + (j + i * dst.width) * cv.CHANNELS] = src.RGBA[3 + (j + i * dst.width) * cv.CHANNELS];
 				}
 			}
 		break;
@@ -3110,10 +3111,10 @@ cv.cvtColor = function (src, dst, code){
 			        
 			        h = h * 256 / 360;
 			        
-			        dst.RGBA[(j + i * dst.width) * CHANNELS] = h;
-					dst.RGBA[1 + (j + i * dst.width) * CHANNELS] = ( max == 0 ) ? 0 : (max - min) / max * 255;
-					dst.RGBA[2 + (j + i * dst.width) * CHANNELS] = max;
-					dst.RGBA[3 + (j + i * dst.width) * CHANNELS] = src.RGBA[3 + (j + i * dst.width) * CHANNELS];		
+			        dst.RGBA[(j + i * dst.width) * cv.CHANNELS] = h;
+					dst.RGBA[1 + (j + i * dst.width) * cv.CHANNELS] = ( max == 0 ) ? 0 : (max - min) / max * 255;
+					dst.RGBA[2 + (j + i * dst.width) * cv.CHANNELS] = max;
+					dst.RGBA[3 + (j + i * dst.width) * cv.CHANNELS] = src.RGBA[3 + (j + i * dst.width) * cv.CHANNELS];		
 				}
 			}
 		break;
@@ -3122,9 +3123,9 @@ cv.cvtColor = function (src, dst, code){
 			for (var i = 0; i < dst.height; i++) {
 				for (var j = 0; j < dst.width; j++) {
 				
-					var h = src.RGBA[(j + i * dst.width) * CHANNELS];
-					var s = src.RGBA[1 + (j + i * dst.width) * CHANNELS];
-					var v = src.RGBA[2 + (j + i * dst.width) * CHANNELS];
+					var h = src.RGBA[(j + i * dst.width) * cv.CHANNELS];
+					var s = src.RGBA[1 + (j + i * dst.width) * cv.CHANNELS];
+					var v = src.RGBA[2 + (j + i * dst.width) * cv.CHANNELS];
 
 					var red, green, blue;
 					
@@ -3196,11 +3197,11 @@ cv.cvtColor = function (src, dst, code){
 			        } else {
 			            s = (Math.max(r, g, b) - Math.min(r, g, b)) / (2 * 255 - Math.max(r, g, b) - Math.min(r, g, b));
 			        }
-					dst.RGBA[(j + i * dst.width) * CHANNELS] = h;
-					dst.RGBA[1 + (j + i * dst.width) * CHANNELS] =  255 * l;
-					dst.RGBA[2 + (j + i * dst.width) * CHANNELS] = 255 * s;
+					dst.RGBA[(j + i * dst.width) * cv.CHANNELS] = h;
+					dst.RGBA[1 + (j + i * dst.width) * cv.CHANNELS] =  255 * l;
+					dst.RGBA[2 + (j + i * dst.width) * cv.CHANNELS] = 255 * s;
 
-					dst.RGBA[3 + (j + i * dst.width) * CHANNELS] = src.RGBA[3 + (j + i * dst.width) * CHANNELS];
+					dst.RGBA[3 + (j + i * dst.width) * cv.CHANNELS] = src.RGBA[3 + (j + i * dst.width) * cv.CHANNELS];
 				}
 			}
 		break;
@@ -3216,9 +3217,9 @@ cv.cvtColor = function (src, dst, code){
 
 			for (var i = 0; i < dst.height; i++) {
 				for (var j = 0; j < dst.width; j++) {	
-					var h = dst.RGBA[(j + i * dst.width) * CHANNELS];
-					var l = dst.RGBA[1 + (j + i * dst.width) * CHANNELS];
-					var s = dst.RGBA[2 + (j + i * dst.width) * CHANNELS];
+					var h = dst.RGBA[(j + i * dst.width) * cv.CHANNELS];
+					var l = dst.RGBA[1 + (j + i * dst.width) * cv.CHANNELS];
+					var s = dst.RGBA[2 + (j + i * dst.width) * cv.CHANNELS];
 					
 					h = h * 360 / 256;
 					l /= 255;
@@ -3231,56 +3232,56 @@ cv.cvtColor = function (src, dst, code){
 					var g = Math.floor(calc(max, min, h) * 255);
 					var b = Math.floor(calc(max, min, h - 120) * 255);
 					
-					dst.RGBA[(j + i * dst.width) * CHANNELS] = r;
-					dst.RGBA[1 + (j + i * dst.width) * CHANNELS] = g;
-					dst.RGBA[2 + (j + i * dst.width) * CHANNELS] = b;
-					dst.RGBA[3 + (j + i * dst.width) * CHANNELS] = src.RGBA[3 + (j + i * dst.width) * CHANNELS];					
+					dst.RGBA[(j + i * dst.width) * cv.CHANNELS] = r;
+					dst.RGBA[1 + (j + i * dst.width) * cv.CHANNELS] = g;
+					dst.RGBA[2 + (j + i * dst.width) * cv.CHANNELS] = b;
+					dst.RGBA[3 + (j + i * dst.width) * cv.CHANNELS] = src.RGBA[3 + (j + i * dst.width) * cv.CHANNELS];					
 				}
 			}
 		break;
 		
-		case cv.cv_CODE.RGB2YCbCr:
+		case cv.CV_CODE.RGB2YCbCr:
 			for (var i = 0; i < src.height; i++) {
 				for (var j = 0; j < src.width; j++) {
-					var r = src.RGBA[(j + i * src.width) * CHANNELS];
-					var g = src.RGBA[1 + (j + i * src.width) * CHANNELS];
-					var b = src.RGBA[2 + (j + i * src.width) * CHANNELS];
+					var r = src.RGBA[(j + i * src.width) * cv.CHANNELS];
+					var g = src.RGBA[1 + (j + i * src.width) * cv.CHANNELS];
+					var b = src.RGBA[2 + (j + i * src.width) * cv.CHANNELS];
 					
 					var Y = (r + g + b) / 3;
 					var Cb = -0.168777 * r - 0.331223 * g + 0.5 * b;
 					var Cr = 0.5 * r - 0.418358 * g - 0.081642 * b;
 					
-					dst.RGBA[(j + i * dst.width) * CHANNELS] = Y;
-					dst.RGBA[1 + (j + i * dst.width) * CHANNELS] = Cb;
-					dst.RGBA[2 + (j + i * dst.width) * CHANNELS] = Cr;
-					dst.RGBA[3 + (j + i * dst.width) * CHANNELS] = src.RGBA[3 + (j + i * dst.width) * CHANNELS];
+					dst.RGBA[(j + i * dst.width) * cv.CHANNELS] = Y;
+					dst.RGBA[1 + (j + i * dst.width) * cv.CHANNELS] = Cb;
+					dst.RGBA[2 + (j + i * dst.width) * cv.CHANNELS] = Cr;
+					dst.RGBA[3 + (j + i * dst.width) * cv.CHANNELS] = src.RGBA[3 + (j + i * dst.width) * cv.CHANNELS];
 					
 				}
 			}
 		break;
 		
-		case cv.cv_CODE.YCbCr2RGB:
+		case cv.CV_CODE.YCbCr2RGB:
 			for (var i = 0; i < src.height; i++) {
 				for (var j = 0; j < src.width; j++) {
-					var Y = src.RGBA[(j + i * src.width) * CHANNELS];
-					var Cb = src.RGBA[1 + (j + i * src.width) * CHANNELS];
-					var Cr = src.RGBA[2 + (j + i * src.width) * CHANNELS];
+					var Y = src.RGBA[(j + i * src.width) * cv.CHANNELS];
+					var Cb = src.RGBA[1 + (j + i * src.width) * cv.CHANNELS];
+					var Cr = src.RGBA[2 + (j + i * src.width) * cv.CHANNELS];
 					
 					var r = Y + 1.402176 * Cr;
 					var g = Y - 0.714489 * Cr - 0.345619 * Cb;
 					var b = Y + 1.771046 * Cb;
 					
-					dst.RGBA[(j + i * dst.width) * CHANNELS] = r;
-					dst.RGBA[1 + (j + i * dst.width) * CHANNELS] = g;
-					dst.RGBA[2 + (j + i * dst.width) * CHANNELS] = b;
-					dst.RGBA[3 + (j + i * dst.width) * CHANNELS] = src.RGBA[3 + (j + i * src.width) * CHANNELS];					
+					dst.RGBA[(j + i * dst.width) * cv.CHANNELS] = r;
+					dst.RGBA[1 + (j + i * dst.width) * cv.CHANNELS] = g;
+					dst.RGBA[2 + (j + i * dst.width) * cv.CHANNELS] = b;
+					dst.RGBA[3 + (j + i * dst.width) * cv.CHANNELS] = src.RGBA[3 + (j + i * src.width) * cv.CHANNELS];					
 					
 				}
 			}
 		break;
 			
 		default:
-			throw "code" + ERROR.SWITCH_VALUE;
+			throw "code" + cv.ERROR.SWITCH_VALUE;
 		break;
 		}
 	}
@@ -3783,27 +3784,27 @@ cv.cvCreateImage = function (width, height){
 	var dst = null;
 	try{
 		if(cv.cvUndefinedOrNull(width) || cv.cvUndefinedOrNull(height))
-			throw "width or height" + ERROR.IS_UNDEFINED_OR_NULL;
+			throw "width or height" + cv.ERROR.IS_UNDEFINED_OR_NULL;
 		else if(width <= 0 || height <= 0)
-			throw "width or height" + ERROR.ONLY_POSITIVE_NUMBER;
+			throw "width or height" + cv.ERROR.ONLY_POSITIVE_NUMBER;
 
-		dst = new IplImage();
+		dst = new cv.IplImage();
 		dst.canvas = document.createElement('canvas');
 		dst.canvas.width = width;
 		dst.canvas.height = height;
-		if (cv.cvUndefinedOrNull(dst.canvas)) throw 'canvas' + ERROR.IS_UNDEFINED_OR_NULL;
-		if (! dst.canvas.getContext) throw ERROR.NOT_GET_CONTEXT;
+		if (cv.cvUndefinedOrNull(dst.canvas)) throw 'canvas' + cv.ERROR.IS_UNDEFINED_OR_NULL;
+		if (! dst.canvas.getContext) throw cv.ERROR.NOT_GET_CONTEXT;
 		dst.height = dst.canvas.height;
 		dst.width = dst.canvas.width;
 		dst.imageData = dst.canvas.getContext("2d").getImageData(0, 0, dst.canvas.width, dst.canvas.height);
-		dst.RGBA = new Array(dst.width * dst.width * CHANNELS);
+		dst.RGBA = new Array(dst.width * dst.width * cv.CHANNELS);
 	    for(var i = 0 ; i < dst.height ; i++){
-	    	var is = i * dst.width * CHANNELS;
+	    	var is = i * dst.width * cv.CHANNELS;
 	    	var js = 0;
 	    	for(var j = 0 ; j < dst.width ; j++){
-	    		for(var c = 0 ; c < CHANNELS - 1; dst.RGBA[c++ + js + is] = 0);
+	    		for(var c = 0 ; c < cv.CHANNELS - 1; dst.RGBA[c++ + js + is] = 0);
 		    	dst.RGBA[3 + js + is] = 255;
-		    	js += CHANNELS;
+		    	js += cv.CHANNELS;
 	    	}
 	    }
 	}
