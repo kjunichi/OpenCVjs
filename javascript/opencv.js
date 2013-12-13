@@ -373,7 +373,7 @@ cv.FOUR_ARITHMETIC = {
 }
 
 //リサイズの種類
-cv.cv_INTER = {
+cv.CV_INTER = {
 	NN : 0,
 	LINEAR : 1,
 	AREA : 2,
