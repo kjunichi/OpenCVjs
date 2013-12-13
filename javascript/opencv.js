@@ -280,27 +280,27 @@ cv.cv_TERMCRIT = {
 	EPS: 2
 }
 //ハフ変換の種類
-cv.cv_HOUGH = {
+cv.CV_HOUGH = {
 	STANDARD : 0,
 	PROBABILISTIC : 1,
 	MULTI_SCALE : 2
 }
 
 //逆行列の演算の種類
-cv.cv_INV = {
+cv.CV_INV = {
 	LU: 0,
 	SVD: 1,
 	SVD_SYM: 2
 }
 
 //ヒストグラムの種類
-cv.cv_HIST = {
+cv.CV_HIST = {
 	ARRAY: 0,
 	SPARSE: 1
 }
 
 //表色系変換の種類
-cv.cv_CODE = {
+cv.CV_CODE = {
 	RGB2GRAY: 0,
 	RGB2HSV: 1,
 	HSV2RGB: 2,
@@ -311,7 +311,7 @@ cv.cv_CODE = {
 }
 
 //ブレンドの種類
-cv.cv_BLEND_MODE = {
+cv.CV_BLEND_MODE = {
 	OVER_LAY: 0, //オーバーレイ
 	SCREEN: 1, //スクリーン
 	HARD_LIGHT: 2, // ハードライト
@@ -328,7 +328,7 @@ cv.cv_BLEND_MODE = {
 }
 
 //スムージングの種類
-cv.cv_SMOOTH_TYPE = {
+cv.CV_SMOOTH_TYPE = {
 	BLUR_NO_SCALE: 0,
 	BLUR: 1,
 	GAUSSIAN: 2,
@@ -337,7 +337,7 @@ cv.cv_SMOOTH_TYPE = {
 }
 
 //閾値処理の種類
-cv.cv_THRESHOLD_TYPE = {
+cv.CV_THRESHOLD_TYPE = {
 	THRESH_BINARY: 0,
 	THRESH_BINARY_INV: 1,
 	THRESH_TRUNC: 2,
@@ -347,7 +347,7 @@ cv.cv_THRESHOLD_TYPE = {
 }
 
 //モルフォロジー変換の種類
-cv.cv_MOP = {
+cv.CV_MOP = {
 	OPEN : 0,
 	CLOSE : 1,
 	GRADIENT : 2,
@@ -356,7 +356,7 @@ cv.cv_MOP = {
 }
 
 //DFTの種類
-cv.cv_DXT = {
+cv.CV_DXT = {
 	FORWARD: 0, //順変換 スケーリングなし
 	INVERSE: 1, //逆変換 スケーリングなし
 	FORWARD_SCALE: 2, //順変換 スケーリングあり
@@ -381,14 +381,14 @@ cv.CV_INTER = {
 }
 
 //インペイントの種類
-cv.cv_INPAINT = {
+cv.CV_INPAINT = {
 	NS: 0,
 	TELEA: 1
 }
 
 //反復アルゴリズムのための終了条件
 //cv.cvTermCriteria型の変数に利用する
-cv.cv_TERMCRIT = {
+cv.CV_TERMCRIT = {
 	ITER: 1,
 	EPS: 2
 }
