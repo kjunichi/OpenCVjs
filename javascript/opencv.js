@@ -15,7 +15,7 @@ cv.cvKMeans2 = function (samples, cluster_count, labels, termcrit){
 			{
 				for(var i = 0 ; i < samples.height ; i++){
 					for(var j = 0 ; j < samples.width; j++){
-						var ji = (j + i * samples.width) * CHANNELS;
+						var ji = (j + i * samples.width) * cv.CHANNELS;
 						var c1 = samples.RGBA[ji];
 						var c2 = samples.RGBA[1 + ji];
 						var c3 = samples.RGBA[2 + ji];
@@ -63,7 +63,7 @@ cv.cvInPaint = function (src, mask, dst, inpaintRadius, flags){
 							//8近傍チェック
 							for(var y = -1 ; y <= 1 ; y++){
 								for(var x = -1 ; x <= 1 ; x++){
-									if(mask.RGBA[(j + x + (i + y) * mask.width) * CHANNELS] == 0){
+									if(mask.RGBA[(j + x + (i + y) * mask.width) * cv.CHANNELS] == 0){
 										v = 255;
 										break;
 									}
@@ -71,12 +71,12 @@ cv.cvInPaint = function (src, mask, dst, inpaintRadius, flags){
 								if(v != 0) break;
 							}
 						}
-						edge.RGBA[(j + i * edge.width) * CHANNELS] = v;
+						edge.RGBA[(j + i * edge.width) * cv.CHANNELS] = v;
 					}
 				}
 				else{
 					for(var j = 0 ; j < edge.width ; j++){
-						edge.RGBA[(j + i * edge.width) * CHANNELS] = 255;
+						edge.RGBA[(j + i * edge.width) * cv.CHANNELS] = 255;
 					}
 				}
 			}
@@ -174,7 +174,7 @@ cv.cvHoughLines2 = function (src, method, rho, theta, threshold, param1, param2)
 		case cv.cv_HOUGH.STANDARD:
 		
 		for(var i = 0 ; i < src.height ; i++){
-			var is = i * src.width * CHANNELS;
+			var is = i * src.width * cv.CHANNELS;
 			var js = 0;
 			for(var j = 0 ; j < src.width ; j++){
 				if(src.RGBA[js + is] == 255){
@@ -183,7 +183,7 @@ cv.cvHoughLines2 = function (src, method, rho, theta, threshold, param1, param2)
 						counter[t][r + rhoMax]++;
 					}
 				}
-				js += CHANNELS;
+				js += cv.CHANNELS;
 			}
 		}
 
@@ -3892,9 +3892,9 @@ cv.cvShowImageToCanvasElement = function (canvasElement, iplImage){
 //なし
 cv.cvRGBA2ImageData = function (iplImage){
 	try{
-		if(cv.cvUndefinedOrNull(iplImage)) throw "iplImage" + ERROR.IS_UNDEFINED_OR_NULL;
+		if(cv.cvUndefinedOrNull(iplImage)) throw "iplImage" + cv.ERROR.IS_UNDEFINED_OR_NULL;
 		for(var i = 0 ; i < iplImage.height ; i++){
-			var is = i * iplImage.width * CHANNELS;
+			var is = i * iplImage.width * cv.CHANNELS;
 			var js = 0;
 			for(var j = 0 ; j < iplImage.width ; j++){
 				for(var c = 0 ; c < cv.CHANNELS; c++){
@@ -3916,15 +3916,15 @@ cv.cvRGBA2ImageData = function (iplImage){
 //なし
 cv.cvImageData2RGBA = function (iplImage){
 	try{
-		if(cv.cvUndefinedOrNull(iplImage)) throw "iplImage" + ERROR.IS_UNDEFINED_OR_NULL;
+		if(cv.cvUndefinedOrNull(iplImage)) throw "iplImage" + cv.ERROR.IS_UNDEFINED_OR_NULL;
 		for(var i = 0 ; i < iplImage.height ; i++){
-			var is = i * iplImage.width * CHANNELS;
+			var is = i * iplImage.width * cv.CHANNELS;
 			var js = 0;
 			for(var j = 0 ; j < iplImage.width ; j++){
-				for(var c = 0 ; c < CHANNELS; c++){
+				for(var c = 0 ; c < cv.CHANNELS; c++){
 					iplImage.RGBA[c + js + is] = iplImage.imageData.data[c + js + is] ; 
 				}
-				js += CHANNELS;
+				js += cv.CHANNELS;
 			}
 		}	
 	}
@@ -3988,17 +3988,17 @@ cv.cvGetIplImageAtImg = function (imgId){
 	    iplImage.canvas = cv.cvGetCanvasAtImgElement(imgElement);
 	    iplImage.width = iplImage.canvas.width;
 	    iplImage.height = iplImage.canvas.height;
-	    iplImage.RGBA = new Array(iplImage.width * iplImage.width * CHANNELS);
+	    iplImage.RGBA = new Array(iplImage.width * iplImage.width * cv.CHANNELS);
 		var context = iplImage.canvas.getContext("2d");
 	    iplImage.imageData = context.getImageData(0, 0, iplImage.canvas.width, iplImage.canvas.height);
 	    for(var i = 0 ; i < iplImage.height ; i++){
-	    	var is = i * iplImage.width * CHANNELS;
+	    	var is = i * iplImage.width * cv.CHANNELS;
 			var js = 0;
 	    	for(var j = 0 ; j < iplImage.width ; j++){
-	    		for(var c = 0 ; c < CHANNELS ; c++){
+	    		for(var c = 0 ; c < cv.CHANNELS ; c++){
 		    		iplImage.RGBA[c + js + is] = iplImage.imageData.data[c + js + is];
 		    	}
-		    	js += CHANNELS;
+		    	js += cv.CHANNELS;
 	    	}
 		}
 	}
