@@ -365,7 +365,7 @@ cv.cv_DXT = {
 
 
 //四則演算の種類
-cv.cv.FOUR_ARITHMETIC = {
+cv.FOUR_ARITHMETIC = {
 	ADD : 0,
 	SUB : 1,
 	MULT : 2,
@@ -394,10 +394,10 @@ cv.cv_TERMCRIT = {
 }
 
 //チャンネル数
-cv.cv.CHANNELS = 4;
+cv.CHANNELS = 4;
 
 //エラー文
-cv.cv.ERROR = {
+cv.ERROR = {
 	IS_UNDEFINED_OR_NULL : "がundefinedかnullです",
 	DIFFERENT_SIZE : "IplImageサイズは全て同じにして下さい",
 	DIFFERENT_ROWS_OR_COLS: "行と列が正しくありません",
@@ -3067,7 +3067,7 @@ cv.cvCanny = function (src, dst, threshold1, threshold2, aperture_size){
 //code cv.cv_CODE この値に従って表色系を変換する "X"2"Y"となっておりX表色系からY表色系への変換を意味する
 //出力
 //なし
-cv.cv.cv.cvtColor = function (src, dst, code){
+cv.cvtColor = function (src, dst, code){
 	try{
 		if(cv.cvUndefinedOrNull(src) || cv.cvUndefinedOrNull(dst) || cv.cvUndefinedOrNull(code))
 			throw "src or dst or color" + ERROR.IS_UNDEFINED_OR_NULL; 
