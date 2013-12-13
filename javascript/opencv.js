@@ -3068,7 +3068,7 @@ cv.cvCanny = function (src, dst, threshold1, threshold2, aperture_size){
 //code cv.cv_CODE この値に従って表色系を変換する "X"2"Y"となっておりX表色系からY表色系への変換を意味する
 //出力
 //なし
-cv.cvtColor = function (src, dst, code){
+cv.cvCvtColor = function (src, dst, code){
 	try{
 		if(cv.cvUndefinedOrNull(src) || cv.cvUndefinedOrNull(dst) || cv.cvUndefinedOrNull(code))
 			throw "src or dst or color" + cv.ERROR.IS_UNDEFINED_OR_NULL; 
