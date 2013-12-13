@@ -599,7 +599,7 @@ cv.cvmSub = function (matA, matB, matX){
 //matX cv.cvMat型 結果が代入される行列
 //出力
 //なし
-cv.cvmMul = function cv.cvmMul(matA, matB, matX){
+cv.cvmMul = function cvmMul(matA, matB, matX){
 	try{
 		if(cv.cvUndefinedOrNull(matA) || cv.cvUndefinedOrNull(matB)|| cv.cvUndefinedOrNull(matX))
 				throw "引数のどれか" + ERROR.IS_UNDEFINED_OR_NULL;
@@ -627,7 +627,7 @@ cv.cvmMul = function cv.cvmMul(matA, matB, matX){
 //matX cv.cvMat型 結果が代入される行列
 //出力
 //なし
-cv.cvmTranspose = function cv.cvmTranspose(matA, matX){
+cv.cvmTranspose = function (matA, matX){
 	try{
 		if(cv.cvUndefinedOrNull(matA) || cv.cvUndefinedOrNull(matX))
 				throw "引数のどれか" + ERROR.IS_UNDEFINED_OR_NULL;
@@ -655,7 +655,7 @@ cv.cvmTranspose = function cv.cvmTranspose(matA, matX){
 //method cv.cv_INV配列 アルゴリズムの種類
 //出力
 //なし
-cv.cvInverse = function cv.cvInverse(mat, invMat, method){
+cv.cvInverse = function (mat, invMat, method){
 	try{
 		if(cv.cvUndefinedOrNull(mat) || cv.cvUndefinedOrNull(invMat) ||
 		mat.rows != invMat.rows || mat.cols != invMat.cols) 
